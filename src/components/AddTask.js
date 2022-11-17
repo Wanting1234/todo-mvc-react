@@ -2,7 +2,7 @@ import React from "react";
 
 function AddTask() {
     return(
-        <input placeholder='What needs to be done?'/>
+        <input className="new-task" placeholder='What needs to be done?' autoFocus/>
     );
 }
 
