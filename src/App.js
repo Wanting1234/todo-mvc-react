@@ -1,16 +1,16 @@
 import React from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import AddTask from "./components/AddTask";
+import MainSection from "./components/MainSection";
 
 function App() {
-    return (
-        <div className="App">
-            <Header />
-            <AddTask />
-            <Footer />
-        </div>
-    );
+  return (
+    <div className="App">
+      <Header />
+      <MainSection />
+      <Footer />
+    </div>
+  );
 }
 
 export default App;
