@@ -24,12 +24,16 @@ const MainSection = () => {
   return (
     <div className="main-section">
       <AddTask creatTask={creatTask} />
+      <input type="checkbox" className="toggle-all" id="toggle-all" />
+      <label></label>
       <ul className="task-list">
         {tasks.map((task) => (
           <li key={task.id}>
-            <input type="checkbox" />
-            <label>{task.name}</label>
-            <button>x</button>
+            <div className="view">
+              <input type="checkbox" className="toggle" />
+              <label className="task">{task.name}</label>
+              <button className="delete">x</button>
+            </div>
           </li>
         ))}
       </ul>

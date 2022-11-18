@@ -22,11 +22,13 @@ body {
 
 .new-task {
     height: 65px;
-    width: 100%;
+    width: 480px;
+    padding: 0 15px 0 55px;
     font-size: 24px;
     border: none;
     background: #ffffff;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+    /*box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);*/
+    box-shadow: inset 0 -2px 1px rgb(0 0 0 / 3%);
 }
 
 input  {
@@ -43,3 +45,76 @@ input  {
     margin-top: 50px;
     color: #bfbfbf;
 }
+
+.toggle-all {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+
+label {
+    cursor: default;
+}
+
+.toggle-all + label {
+    width: 50px;
+    height: 34px;
+    font-size: 0;
+    position: absolute;
+    top: 18px;
+    left: 0;
+}
+
+.toggle-all + label:before {
+    content: '❯';
+    font-size: 22px;
+    color: #e6e6e6;
+}
+
+.main-section {
+    position: relative;
+    background: #ffffff;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+}
+
+.task-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 24px;
+}
+
+.todo-list li {
+    position: relative;
+    border-bottom: 1px solid #d5d5d5;
+}
+
+.view {
+    position: relative;
+    border-bottom: 1px solid #ededed;
+}
+
+.toggle {
+    position: absolute;
+    left: 0;
+    top: 20px;
+}
+
+.task {
+    text-align: left;
+    display: block;
+    font-size: 24px;
+    padding: 15px 65px 15px 55px;
+}
+
+.delete {
+    position: absolute;
+    right: 0;
+    bottom: 20px;
+    border: none;
+    background-color: #ffffff;
+    color: darkred;
+}
+
+
