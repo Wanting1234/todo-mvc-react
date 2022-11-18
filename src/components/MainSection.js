@@ -1,14 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AddTask from "./AddTask";
 
 const MainSection = () => {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(
+    JSON.parse(localStorage.getItem("task")) || []
+  );
+
+  useEffect(() => {
+    localStorage.setItem("task", JSON.stringify(tasks));
+  }, [tasks]);
 
   const creatTask = (taskName) => {
     setTasks([
       ...tasks,
       {
-        id: tasks.length + 1,
+        id: new Date().getTime(),
         name: taskName,
         completed: false,
       },
