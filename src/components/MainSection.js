@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import AddTask from "./AddTask";
+import { TaskItem } from "./TaskItem";
 
 const MainSection = () => {
   const [tasks, setTasks] = useState(
@@ -21,6 +22,17 @@ const MainSection = () => {
     ]);
   };
 
+  const handleChange = (selectedTask) => {
+    setTasks(
+      tasks.map((task) => {
+        if (task.id === selectedTask.id) {
+          task.completed = !selectedTask.completed;
+        }
+        return task;
+      })
+    );
+  };
+
   return (
     <div className="main-section">
       <AddTask creatTask={creatTask} />
@@ -28,13 +40,11 @@ const MainSection = () => {
       <label></label>
       <ul className="task-list">
         {tasks.map((task) => (
-          <li key={task.id}>
-            <div className="view">
-              <input type="checkbox" className="toggle" />
-              <label className="task">{task.name}</label>
-              <button className="delete">x</button>
-            </div>
-          </li>
+          <TaskItem
+            key={task.id}
+            task={task}
+            onChange={() => handleChange(task)}
+          />
         ))}
       </ul>
     </div>

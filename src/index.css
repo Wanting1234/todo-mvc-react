@@ -117,4 +117,12 @@ label {
     color: darkred;
 }
 
+.marked {
+    text-decoration: line-through;
+}
+
+.unmarked {
+    text-decoration: none;
+}
+
 
