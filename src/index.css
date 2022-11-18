@@ -117,6 +117,16 @@ label {
     color: darkred;
 }
 
+.present {
+    position: absolute;
+    right: 0;
+    bottom: 20px;
+    border: none;
+    background-color: #ffffff;
+    color: darkred;
+    opacity: 0;
+}
+
 .marked {
     text-decoration: line-through;
 }

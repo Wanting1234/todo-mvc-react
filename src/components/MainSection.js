@@ -33,6 +33,10 @@ const MainSection = () => {
     );
   };
 
+  const deleteTask = (id) => {
+    setTasks(tasks.filter((task) => task.id !== id));
+  };
+
   return (
     <div className="main-section">
       <AddTask creatTask={creatTask} />
@@ -43,7 +47,8 @@ const MainSection = () => {
           <TaskItem
             key={task.id}
             task={task}
-            onChange={() => handleChange(task)}
+            updateStatus={() => handleChange(task)}
+            deleteTask={() => deleteTask(task.id)}
           />
         ))}
       </ul>
