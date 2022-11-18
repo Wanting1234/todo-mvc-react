@@ -1,10 +1,12 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen } from "@testing-library/react";
 import Header from "../components/Header";
 
-describe('header', () => {
-    test('should render header', () => {
+describe("header", () => {
+  test("should render header", () => {
+    render(<Header />);
 
-        render(<Header />);
-        expect(screen.getByText('todos')).toBeInTheDocument();
-    });
+    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
+      "todos"
+    );
+  });
 });
