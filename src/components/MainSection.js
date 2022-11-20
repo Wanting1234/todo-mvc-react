@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import AddTask from "./AddTask";
 import { TaskItem } from "./TaskItem";
-import { TaskList } from "./TaskList";
 import { ToggleAll } from "./ToggleAll";
+import { TaskFilter } from "./TaskFilter";
 
 const MainSection = () => {
   const [tasks, setTasks] = useState(
     JSON.parse(localStorage.getItem("task")) || []
   );
+  const [filter, setFilter] = useState("all");
 
   useEffect(() => {
     localStorage.setItem("task", JSON.stringify(tasks));
@@ -58,14 +59,29 @@ const MainSection = () => {
     setTasks(newTasks);
   };
 
+  const changeFilter = (event, filterName) => {
+    event.preventDefault();
+    setFilter(filterName);
+  };
+
+  const getVisibleTasks = () => {
+    if (filter === "active") {
+      return tasks.filter((task) => !task.completed);
+    } else if (filter === "completed") {
+      return tasks.filter((task) => task.completed);
+    }
+    return tasks;
+  };
+
+  const visibleTasks = getVisibleTasks();
+
   return (
     <div className="main-section">
       <AddTask createTask={createTask} />
       <ToggleAll toggleAll={toggleAll} />
       <label></label>
-      <TaskList
-        tasks={tasks}
-        prop1={(task) => (
+      <ul className="task-list">
+        {visibleTasks.map((task) => (
           <TaskItem
             key={task.id}
             task={task}
@@ -73,8 +89,9 @@ const MainSection = () => {
             deleteTask={() => deleteTask(task.id)}
             editTask={editTask}
           />
-        )}
-      />
+        ))}
+      </ul>
+      <TaskFilter tasks={tasks} filter={filter} changeFilter={changeFilter} />
     </div>
   );
 };
