@@ -129,4 +129,12 @@ label {
     text-decoration: none;
 }
 
+.rename-input {
+    outline-style: none;
+    box-sizing: border-box;
+    border: none;
+    font-size: 24px;
+    font-weight: 300;
+}
+
 
