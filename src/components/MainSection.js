@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import AddTask from "./AddTask";
 import { TaskItem } from "./TaskItem";
+import { TaskList } from "./TaskList";
+import { ToggleAll } from "./ToggleAll";
 
 const MainSection = () => {
   const [tasks, setTasks] = useState(
@@ -48,13 +50,22 @@ const MainSection = () => {
     );
   };
 
+  const toggleAll = (e) => {
+    const newTasks = tasks.map((task) => {
+      task.completed = e.target.checked;
+      return task;
+    });
+    setTasks(newTasks);
+  };
+
   return (
     <div className="main-section">
       <AddTask createTask={createTask} />
-      <input type="checkbox" className="toggle-all" id="toggle-all" />
+      <ToggleAll toggleAll={toggleAll} />
       <label></label>
-      <ul className="task-list">
-        {tasks.map((task) => (
+      <TaskList
+        tasks={tasks}
+        prop1={(task) => (
           <TaskItem
             key={task.id}
             task={task}
@@ -62,8 +73,8 @@ const MainSection = () => {
             deleteTask={() => deleteTask(task.id)}
             editTask={editTask}
           />
-        ))}
-      </ul>
+        )}
+      />
     </div>
   );
 };
