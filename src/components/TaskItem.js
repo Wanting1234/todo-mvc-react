@@ -1,26 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 
 export const TaskItem = ({ task, updateStatus, deleteTask }) => {
-  const [beVisible, setBeVisible] = useState(false);
-
-  function handleEnter() {
-    setBeVisible(true);
-  }
-
-  function handleLeave() {
-    setBeVisible(false);
-  }
-
-  function handleClick(id) {
+  const handleClick = (id) => {
     deleteTask(id);
-  }
+  };
 
   return (
-    <li
-      className={task.completed ? "marked" : "unmarked"}
-      onMouseEnter={handleEnter}
-      onMouseLeave={handleLeave}
-    >
+    <li className={task.completed ? "marked" : "unmarked"}>
       <div className="view">
         <input
           type="checkbox"
@@ -30,7 +16,7 @@ export const TaskItem = ({ task, updateStatus, deleteTask }) => {
         />
         <label className="task">{task.name}</label>
         <button
-          className={beVisible ? "delete" : "present"}
+          className="delete-btn"
           data-testid={task.id}
           onClick={() => handleClick(task.id)}
         >
