@@ -37,6 +37,17 @@ const MainSection = () => {
     setTasks(tasks.filter((task) => task.id !== id));
   };
 
+  const editTask = (id, name) => {
+    setTasks(
+      tasks.map((task) => {
+        if (task.id === id) {
+          task.name = name;
+        }
+        return task;
+      })
+    );
+  };
+
   return (
     <div className="main-section">
       <AddTask createTask={createTask} />
@@ -49,6 +60,7 @@ const MainSection = () => {
             task={task}
             updateStatus={updateStatus}
             deleteTask={() => deleteTask(task.id)}
+            editTask={editTask}
           />
         ))}
       </ul>

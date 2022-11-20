@@ -11,12 +11,14 @@ describe("task item", () => {
     };
     const mockDeleteTask = jest.fn();
     const mockUpdateStatus = jest.fn();
+    const mockEditTask = jest.fn();
 
     render(
       <TaskItem
         task={mockTask}
         updateStatus={mockUpdateStatus}
         deleteTask={mockDeleteTask}
+        editTask={mockEditTask}
       />
     );
 
@@ -33,17 +35,45 @@ describe("task item", () => {
     };
     const mockDeleteTask = jest.fn();
     const mockUpdateStatus = jest.fn();
+    const mockEditTask = jest.fn();
 
     render(
       <TaskItem
         task={mockTask}
         updateStatus={mockUpdateStatus}
         deleteTask={mockDeleteTask}
+        editTask={mockEditTask}
       />
     );
 
     await expect(screen.getByText("task 02")).toBeInTheDocument();
     await userEvent.click(screen.getByTestId("2"));
     await expect(mockDeleteTask).toHaveBeenCalledWith(2);
+  });
+
+  test("should call editTask function when click task content", async () => {
+    const mockTask = {
+      id: 3,
+      name: "task 03",
+      completed: false,
+    };
+    const mockDeleteTask = jest.fn();
+    const mockUpdateStatus = jest.fn();
+    const mockEditTask = jest.fn();
+
+    render(
+      <TaskItem
+        task={mockTask}
+        updateStatus={mockUpdateStatus}
+        deleteTask={mockDeleteTask}
+        editTask={mockEditTask}
+      />
+    );
+
+    await expect(screen.getByText("task 03")).toBeInTheDocument();
+    await userEvent.dblClick(screen.getByText("task 03"));
+    await userEvent.type(screen.getByPlaceholderText("task 03"), "test");
+    await userEvent.keyboard("{enter}");
+    await expect(mockEditTask).toHaveBeenCalled();
   });
 });

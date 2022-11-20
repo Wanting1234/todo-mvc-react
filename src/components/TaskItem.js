@@ -1,24 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
 
-export const TaskItem = ({ task, updateStatus, deleteTask }) => {
+export const TaskItem = ({
+  task: { id, name, completed },
+  updateStatus,
+  deleteTask,
+  editTask,
+}) => {
+  const [isActive, setIsActive] = useState(false);
   const handleClick = (id) => {
     deleteTask(id);
   };
 
+  function handleFocus() {
+    setIsActive(true);
+  }
+
+  function handleBlur() {
+    setIsActive(false);
+  }
+
+  const handleSubmit = (e) => {
+    const enterCode = 13;
+    const newTaskName = e.target.value.trim();
+    if (e.keyCode === enterCode && newTaskName.length > 0) {
+      editTask(id, newTaskName);
+      handleBlur();
+    }
+  };
+
   return (
-    <li className={task.completed ? "marked" : "unmarked"}>
+    <li className={completed ? "marked" : "unmarked"}>
       <div className="view">
         <input
           type="checkbox"
           className="toggle"
-          checked={task.completed}
-          onChange={(e) => updateStatus(task.id, e.target.checked)}
+          checked={completed}
+          onChange={(e) => updateStatus(id, e.target.checked)}
         />
-        <label className="task">{task.name}</label>
+        <label className="task" onDoubleClick={handleFocus}>
+          {isActive ? (
+            <input
+              type="text"
+              placeholder={name}
+              onBlur={handleBlur}
+              className="rename-input"
+              onKeyDown={handleSubmit}
+            />
+          ) : (
+            name
+          )}
+        </label>
         <button
           className="delete-btn"
-          data-testid={task.id}
-          onClick={() => handleClick(task.id)}
+          data-testid={id}
+          onClick={() => handleClick(id)}
         >
           x
         </button>
