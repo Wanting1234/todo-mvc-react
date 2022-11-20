@@ -11,7 +11,7 @@ const MainSection = () => {
     localStorage.setItem("task", JSON.stringify(tasks));
   }, [tasks]);
 
-  const creatTask = (taskName) => {
+  const createTask = (taskName) => {
     setTasks([
       ...tasks,
       {
@@ -22,11 +22,11 @@ const MainSection = () => {
     ]);
   };
 
-  const handleChange = (selectedTask) => {
+  const updateStatus = (id, isCompleted) => {
     setTasks(
       tasks.map((task) => {
-        if (task.id === selectedTask.id) {
-          task.completed = !selectedTask.completed;
+        if (task.id === id) {
+          task.completed = isCompleted;
         }
         return task;
       })
@@ -39,7 +39,7 @@ const MainSection = () => {
 
   return (
     <div className="main-section">
-      <AddTask creatTask={creatTask} />
+      <AddTask createTask={createTask} />
       <input type="checkbox" className="toggle-all" id="toggle-all" />
       <label></label>
       <ul className="task-list">
@@ -47,7 +47,7 @@ const MainSection = () => {
           <TaskItem
             key={task.id}
             task={task}
-            updateStatus={() => handleChange(task)}
+            updateStatus={updateStatus}
             deleteTask={() => deleteTask(task.id)}
           />
         ))}

@@ -26,7 +26,7 @@ export const TaskItem = ({ task, updateStatus, deleteTask }) => {
           type="checkbox"
           className="toggle"
           checked={task.completed}
-          onChange={updateStatus}
+          onChange={(e) => updateStatus(task.id, e.target.checked)}
         />
         <label className="task">{task.name}</label>
         <button

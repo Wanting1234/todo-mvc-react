@@ -11,7 +11,7 @@ describe("add task input box", () => {
 
   test("should clear input value when enter key pressed", async () => {
     const createTask = jest.fn();
-    render(<AddTask creatTask={createTask} />);
+    render(<AddTask createTask={createTask} />);
 
     await userEvent.type(screen.getByRole("textbox"), "test");
     expect(screen.getByRole("textbox")).toHaveValue("test");
