@@ -25,7 +25,7 @@ export const TaskFilter = ({ tasks, filter, changeFilter }) => {
         </li>
         <li>
           <a
-            href="/"
+            href="/active"
             className={getSelectedClass("active")}
             onClick={(event) => changeFilter(event, "active")}
           >
@@ -34,7 +34,7 @@ export const TaskFilter = ({ tasks, filter, changeFilter }) => {
         </li>
         <li>
           <a
-            href="/"
+            href="/completed"
             className={getSelectedClass("completed")}
             onClick={(event) => changeFilter(event, "completed")}
           >
