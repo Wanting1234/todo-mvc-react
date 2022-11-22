@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import AddTask from "./AddTask";
-import { TaskItem } from "./TaskItem";
 import { ToggleAll } from "./ToggleAll";
 import { TaskFilter } from "./TaskFilter";
+import { TaskList } from "./TaskList";
 
 const MainSection = () => {
   const [tasks, setTasks] = useState(
@@ -64,17 +64,6 @@ const MainSection = () => {
     setFilter(filterName);
   };
 
-  const getVisibleTasks = () => {
-    if (filter === "active") {
-      return tasks.filter((task) => !task.completed);
-    } else if (filter === "completed") {
-      return tasks.filter((task) => task.completed);
-    }
-    return tasks;
-  };
-
-  const visibleTasks = getVisibleTasks();
-
   const deleteCompleted = () => {
     setTasks(tasks.filter((task) => task.completed === false));
   };
@@ -84,17 +73,13 @@ const MainSection = () => {
       <AddTask createTask={createTask} />
       <ToggleAll toggleAll={toggleAll} />
       <label></label>
-      <ul className="task-list">
-        {visibleTasks.map((task) => (
-          <TaskItem
-            key={task.id}
-            task={task}
-            updateStatus={updateStatus}
-            deleteTask={() => deleteTask(task.id)}
-            editTask={editTask}
-          />
-        ))}
-      </ul>
+      <TaskList
+        tasks={tasks}
+        filter={filter}
+        updateStatus={updateStatus}
+        deleteTask={deleteTask}
+        editTask={editTask}
+      />
       <TaskFilter
         tasks={tasks}
         filter={filter}
