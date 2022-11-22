@@ -20,9 +20,8 @@ export const TaskItem = ({
   }
 
   const handleSubmit = (e) => {
-    const enterCode = 13;
     const newTaskName = e.target.value.trim();
-    if (e.keyCode === enterCode && newTaskName.length > 0) {
+    if (e.code === "Enter" && newTaskName.length > 0) {
       editTask(id, newTaskName);
       handleBlur();
     }
@@ -54,9 +53,7 @@ export const TaskItem = ({
           className="delete-btn"
           data-testid={id}
           onClick={() => handleClick(id)}
-        >
-          x
-        </button>
+        ></button>
       </div>
     </li>
   );

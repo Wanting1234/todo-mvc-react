@@ -149,10 +149,10 @@ label {
     padding: 15px 65px 15px 55px;
 }
 
-.delete-btn {
+.task-list li .delete-btn {
     position: absolute;
     right: 0;
-    bottom: 20px;
+    bottom: 12px;
     border: none;
     background-color: #ffffff;
     color: #cc9a9a;
@@ -161,6 +161,10 @@ label {
     height: 40px;
     margin: auto 0;
     font-size: 30px;
+}
+
+.task-list li .delete-btn:after {
+    content: "×";
 }
 
 .task-list li:hover .delete-btn {

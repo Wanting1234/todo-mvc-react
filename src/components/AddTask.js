@@ -8,10 +8,9 @@ const AddTask = ({ createTask }) => {
   };
 
   const handleKeyDown = (e) => {
-    const enterCode = 13;
     const newTaskName = taskName.trim();
 
-    if (e.keyCode === enterCode && newTaskName.length > 0) {
+    if (e.code === "Enter" && newTaskName.length > 0) {
       createTask(newTaskName);
       setTaskName("");
     }
