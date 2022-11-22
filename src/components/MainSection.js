@@ -72,7 +72,6 @@ const MainSection = () => {
     <div className="main-section">
       <AddTask createTask={createTask} />
       <ToggleAll toggleAll={toggleAll} />
-      <label></label>
       <TaskList
         tasks={tasks}
         filter={filter}
