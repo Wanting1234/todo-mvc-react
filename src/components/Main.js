@@ -4,7 +4,7 @@ import { ToggleAll } from "./ToggleAll";
 import { TaskFilter } from "./TaskFilter";
 import { TaskList } from "./TaskList";
 
-const MainSection = () => {
+const Main = () => {
   const [tasks, setTasks] = useState(
     JSON.parse(localStorage.getItem("task")) || []
   );
@@ -89,4 +89,4 @@ const MainSection = () => {
   );
 };
 
-export default MainSection;
+export default Main;
