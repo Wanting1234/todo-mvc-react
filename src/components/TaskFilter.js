@@ -1,9 +1,25 @@
-export const TaskFilter = ({ tasks, filter, changeFilter }) => {
+export const TaskFilter = ({
+  tasks,
+  filter,
+  changeFilter,
+  deleteCompleted,
+}) => {
   const activeCount = tasks.filter((task) => !task.completed).length;
   const noTasksClass = tasks.length === 0 ? "-hidden" : "";
   const itemsLeftText = `item${activeCount !== 1 ? "s" : ""} left`;
   const getSelectedClass = (filterName) => {
     return filter === filterName ? "selected" : "";
+  };
+
+  const ClearButton = () => {
+    if (tasks.filter((task) => task.completed).length) {
+      return (
+        <button className="clear-completed" onClick={deleteCompleted}>
+          Clear completed
+        </button>
+      );
+    }
+    return null;
   };
 
   return (
@@ -42,6 +58,7 @@ export const TaskFilter = ({ tasks, filter, changeFilter }) => {
           </a>
         </li>
       </ul>
+      <ClearButton />
     </div>
   );
 };

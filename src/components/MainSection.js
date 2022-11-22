@@ -75,6 +75,10 @@ const MainSection = () => {
 
   const visibleTasks = getVisibleTasks();
 
+  const deleteCompleted = () => {
+    setTasks(tasks.filter((task) => task.completed === false));
+  };
+
   return (
     <div className="main-section">
       <AddTask createTask={createTask} />
@@ -91,7 +95,12 @@ const MainSection = () => {
           />
         ))}
       </ul>
-      <TaskFilter tasks={tasks} filter={filter} changeFilter={changeFilter} />
+      <TaskFilter
+        tasks={tasks}
+        filter={filter}
+        changeFilter={changeFilter}
+        deleteCompleted={deleteCompleted}
+      />
     </div>
   );
 };
